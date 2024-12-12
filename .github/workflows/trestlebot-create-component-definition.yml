@@ -53,7 +53,7 @@ jobs:
           commit_message: "adds component  ${{ github.event.inputs.component_title }} in ${{ github.event.inputs.component_definition_name }}"
           pull_request_title: "Add component ${{ github.event.inputs.component_title }} to ${{ github.event.inputs.component_definition_name }}"
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          if: ${{ github.event.inputs.component_title != '' }}
+         if: ${{ github.event.inputs.component_title != '' }}
       - name: Create component definition and open pull request
         id: generate-cd
         uses: RedHatProductSecurity/trestle-bot/actions/create-cd@main
@@ -71,5 +71,5 @@ jobs:
           commit_message: "adds component  ${{ github.event.inputs.component_title }} in ${{ github.event.inputs.component_definition_name }}"
           pull_request_title: "Add component ${{ github.event.inputs.component_title }} to ${{ github.event.inputs.component_definition_name }}"
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          if: ${{ github.event.inputs.component_title == '' }}
+         if: ${{ github.event.inputs.component_title == '' }}
           
