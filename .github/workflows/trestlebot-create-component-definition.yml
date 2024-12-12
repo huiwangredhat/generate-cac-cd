@@ -53,23 +53,6 @@ jobs:
           commit_message: "adds component  ${{ github.event.inputs.component_title }} in ${{ github.event.inputs.component_definition_name }}"
           pull_request_title: "Add component ${{ github.event.inputs.component_title }} to ${{ github.event.inputs.component_definition_name }}"
           github_token: ${{ secrets.GITHUB_TOKEN }}
-        if: ${{ github.event.inputs.component_title != '' }}
-      - name: Create component definition and open pull request
-        id: generate-cd
-        uses: RedHatProductSecurity/trestle-bot/actions/create-cd@main
-        with:
-          profile_name: ${{ github.event.inputs.profile_name }}
-          component_definition_name: ${{ github.event.inputs.component_definition_name}}
-          product_name: ${{ github.event.inputs.product_name }}
-          cac_path: ${{ github.event.inputs.cac_path }}
-          component_type: ${{ github.event.inputs.component_type }}
-          component_description: ${{ github.event.inputs.component_description }}
-          markdown_path: "markdown/component-definitions"
-          branch: "create-component-definition-${{ github.run_id }}"
-          target_branch: "main"
-          file_pattern: "*.json,markdown/*,rules/*"
-          commit_message: "adds component  ${{ github.event.inputs.component_title }} in ${{ github.event.inputs.component_definition_name }}"
-          pull_request_title: "Add component ${{ github.event.inputs.component_title }} to ${{ github.event.inputs.component_definition_name }}"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-        if: ${{ github.event.inputs.component_title == '' }}
-          
+          product_name: ${{ github.event.inputs.product_name || '' }}
+          cac_path: ${{ github.event.inputs.cac_path || '' }}
+        if: ${{ github.event.inputs.component_title != '' || (github.event.inputs.product_name != '' && github.event.inputs.cac_path != '') }}
